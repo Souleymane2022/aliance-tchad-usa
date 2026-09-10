@@ -34,8 +34,8 @@ export default async function MarketplacePage({
     ...(q
       ? {
           OR: [
-            { name: { contains: q } },
-            { description: { contains: q } },
+            { name: { contains: q, mode: "insensitive" as const } },
+            { description: { contains: q, mode: "insensitive" as const } },
           ],
         }
       : {}),

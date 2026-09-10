@@ -31,10 +31,13 @@ pour acheter et vendre au sein de la communauté.
 
 ## 🚀 Démarrage local
 
+Il vous faut une base PostgreSQL. Le plus simple : créez une base gratuite sur
+[Neon](https://neon.tech) et utilisez-la aussi en local.
+
 ```bash
 npm install
-cp .env.example .env        # puis éditez AUTH_SECRET (openssl rand -base64 32)
-npx prisma migrate dev      # crée la base SQLite locale
+cp .env.example .env        # collez vos URLs Neon + AUTH_SECRET (openssl rand -base64 32)
+npx prisma migrate deploy   # applique les migrations
 npm run db:seed             # (optionnel) données de démonstration
 npm run dev                 # http://localhost:3000
 ```
@@ -42,19 +45,35 @@ npm run dev                 # http://localhost:3000
 Compte de démonstration (après le seed) :
 `demo.vendeur@alliancetchadusa.org` / `Demo1234!`
 
-## 🌍 Déploiement (Vercel recommandé)
+## 🌍 Déploiement : Neon + Vercel (gratuit)
 
-1. Importez ce dépôt sur [vercel.com](https://vercel.com) (gratuit).
-2. Dans les variables d'environnement du projet, définissez :
-   - `DATABASE_URL` — une base **PostgreSQL** (gratuite chez [Neon](https://neon.tech) ou Vercel Postgres). Changez aussi `provider = "postgresql"` dans `prisma/schema.prisma` et régénérez la migration (`npx prisma migrate dev`).
-   - `AUTH_SECRET` — générez-la : `openssl rand -base64 32`.
-3. Déployez : la commande de build (`prisma generate && prisma migrate deploy && next build`) applique les migrations automatiquement.
+### Étape 1 — Créer la base sur Neon
+1. Créez un compte sur [neon.tech](https://neon.tech) et un projet (ex. `alliance-tchad-usa`).
+2. Dans **Connection Details**, copiez **deux** URLs :
+   - l'URL **Pooled connection** (elle contient `-pooler`) → ce sera `DATABASE_URL` ;
+   - l'URL **directe** (sans `-pooler`, décochez "Connection pooling") → ce sera `DIRECT_URL`.
 
-> ⚠️ SQLite convient au développement local et aux petits serveurs (VPS avec disque persistant). Sur Vercel/serverless, utilisez PostgreSQL — le fichier SQLite n'y survit pas entre les déploiements.
+### Étape 2 — Déployer sur Vercel
+1. Sur [vercel.com](https://vercel.com), cliquez **Add New → Project** et importez ce dépôt GitHub.
+2. Dans **Environment Variables**, ajoutez :
+
+   | Nom | Valeur |
+   |---|---|
+   | `DATABASE_URL` | l'URL Neon **avec** `-pooler` |
+   | `DIRECT_URL` | l'URL Neon **sans** `-pooler` |
+   | `AUTH_SECRET` | le résultat de `openssl rand -base64 32` |
+
+3. Cliquez **Deploy**. La commande de build (`prisma generate && prisma migrate deploy && next build`) crée automatiquement les tables sur Neon au premier déploiement.
+4. (Optionnel) Pour les données de démonstration, en local avec le `.env` pointant sur Neon : `npm run db:seed`.
+
+> Pourquoi deux URLs ? L'application utilise la connexion **poolée** de Neon
+> (indispensable en serverless), tandis que les migrations Prisma passent par la
+> connexion **directe** (`directUrl` dans `prisma/schema.prisma`).
 
 > 💳 Paiement : le site fonctionne aujourd'hui en « paiement à la livraison / accord direct avec le vendeur ». La structure (montants en cents, commandes transactionnelles) est prête pour brancher Stripe plus tard.
 
 ## 🧰 Stack technique
 
 Next.js 15 (App Router, Server Actions) · TypeScript strict · Prisma ORM ·
-SQLite/PostgreSQL · Tailwind CSS 4 · Zod · jose (JWT) · bcryptjs.
+PostgreSQL (Neon) · Tailwind CSS 4 · Zod · jose (JWT) · bcryptjs ·
+Déploiement Vercel.

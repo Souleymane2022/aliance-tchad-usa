@@ -3,8 +3,11 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  // Sur Neon : DATABASE_URL = URL "pooled" (avec -pooler) pour l'application,
+  // DIRECT_URL = URL directe (sans -pooler) pour les migrations Prisma.
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
