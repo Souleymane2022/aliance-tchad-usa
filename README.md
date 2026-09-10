@@ -60,8 +60,12 @@ Compte de démonstration (après le seed) :
    | Nom | Valeur |
    |---|---|
    | `DATABASE_URL` | l'URL Neon **avec** `-pooler` |
-   | `DIRECT_URL` | l'URL Neon **sans** `-pooler` |
    | `AUTH_SECRET` | le résultat de `openssl rand -base64 32` |
+   | `DIRECT_URL` *(optionnel)* | l'URL Neon **sans** `-pooler` |
+
+   `DIRECT_URL` est facultative : si elle manque, le build la déduit
+   automatiquement (variables de l'intégration Neon, ou `DATABASE_URL`
+   sans `-pooler`).
 
 3. Cliquez **Deploy**. La commande de build (`prisma generate && prisma migrate deploy && next build`) crée automatiquement les tables sur Neon au premier déploiement.
 4. (Optionnel) Pour les données de démonstration, en local avec le `.env` pointant sur Neon : `npm run db:seed`.
