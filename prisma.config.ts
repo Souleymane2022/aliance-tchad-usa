@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { defineConfig } from "prisma/config";
+import { ensureDatabaseEnv } from "./scripts/env-resolve.mjs";
 
 // Avec un fichier prisma.config.ts, la CLI Prisma ne charge plus .env
 // automatiquement : on le fait ici, sans dépendance externe.
@@ -16,14 +17,9 @@ if (fs.existsSync(envPath)) {
   }
 }
 
-// Filet de sécurité (même logique que scripts/build.mjs) : si DIRECT_URL
-// manque, on la déduit pour que les migrations ne cassent jamais.
-if (!process.env.DIRECT_URL && process.env.DATABASE_URL) {
-  process.env.DIRECT_URL =
-    process.env.DATABASE_URL_UNPOOLED ||
-    process.env.POSTGRES_URL_NON_POOLING ||
-    process.env.DATABASE_URL.replace("-pooler", "");
-}
+// Filet de sécurité : DATABASE_URL / DIRECT_URL détectées parmi toutes les
+// variables contenant une URL PostgreSQL, quel que soit leur nom.
+ensureDatabaseEnv();
 
 export default defineConfig({
   schema: "prisma/schema.prisma",

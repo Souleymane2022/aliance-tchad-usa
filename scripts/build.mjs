@@ -2,44 +2,28 @@
  * Script de build (utilisé par Vercel et en local) :
  *   prisma generate → prisma migrate deploy → next build
  *
- * Robustesse : si DIRECT_URL n'est pas définie, on la déduit automatiquement.
- * L'intégration Neon de Vercel crée DATABASE_URL_UNPOOLED / POSTGRES_URL_NON_POOLING ;
- * à défaut, on retire le suffixe "-pooler" de DATABASE_URL ; en dernier recours,
- * on utilise DATABASE_URL telle quelle. Le déploiement ne casse donc jamais
- * pour une simple variable manquante.
+ * Robustesse : DATABASE_URL et DIRECT_URL sont détectées automatiquement
+ * parmi toutes les variables d'environnement contenant une URL PostgreSQL
+ * (voir scripts/env-resolve.mjs), quel que soit le préfixe choisi par
+ * l'intégration (Neon, Vercel Postgres, …).
  */
 import { spawnSync } from "node:child_process";
+import { ensureDatabaseEnv } from "./env-resolve.mjs";
 
 const env = { ...process.env };
 
-if (!env.DATABASE_URL) {
-  // Autres noms possibles selon l'intégration utilisée sur Vercel.
-  env.DATABASE_URL =
-    env.POSTGRES_PRISMA_URL || env.POSTGRES_URL || env.DATABASE_URL_UNPOOLED || "";
-}
-if (!env.DATABASE_URL) {
+if (!ensureDatabaseEnv(env)) {
   console.error(
-    "\n✗ DATABASE_URL est manquante.\n" +
-      "  Ajoutez-la dans Vercel → Settings → Environment Variables\n" +
-      "  (l'URL Neon « pooled », celle qui contient -pooler).\n"
+    "\n✗ Aucune URL PostgreSQL trouvée dans les variables d'environnement.\n" +
+      "  Sur Vercel : Settings → Environment Variables, ajoutez DATABASE_URL\n" +
+      "  (l'URL de connexion Neon), ou connectez la base via l'onglet Storage.\n" +
+      "  Variables actuellement visibles commençant par des noms usuels :\n  " +
+      Object.keys(env)
+        .filter((k) => /(DATABASE|POSTGRES|NEON|PG)/i.test(k))
+        .join(", ") +
+      "\n"
   );
   process.exit(1);
-}
-
-if (!env.DIRECT_URL) {
-  env.DIRECT_URL =
-    env.DATABASE_URL_UNPOOLED ||
-    env.POSTGRES_URL_NON_POOLING ||
-    env.DATABASE_URL.replace("-pooler", "");
-  console.log(
-    "ℹ DIRECT_URL non définie : utilisation automatique de " +
-      (env.DATABASE_URL_UNPOOLED
-        ? "DATABASE_URL_UNPOOLED"
-        : env.POSTGRES_URL_NON_POOLING
-          ? "POSTGRES_URL_NON_POOLING"
-          : "DATABASE_URL (sans -pooler)") +
-      " pour les migrations."
-  );
 }
 
 const steps = [
