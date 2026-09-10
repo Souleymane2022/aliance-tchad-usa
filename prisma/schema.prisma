@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  name         String
+  passwordHash String
+  role         String     @default("MEMBRE") // MEMBRE | ADMIN
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  store        Store?
+  cartItems    CartItem[]
+  orders       Order[]
+}
+
+model Store {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  description String
+  phone       String?
+  city        String?
+  country     String    @default("USA")
+  ownerId     String    @unique
+  owner       User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  // Prix en cents (entier) pour éviter toute erreur d'arrondi en virgule flottante.
+  priceCents  Int
+  currency    String      @default("USD")
+  imageUrl    String?
+  category    String      @default("Autre")
+  stock       Int         @default(0)
+  active      Boolean     @default(true)
+  storeId     String
+  store       Store       @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([storeId])
+  @@index([category])
+  @@index([active])
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, productId])
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  reference       String      @unique
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  status          String      @default("EN_ATTENTE") // EN_ATTENTE | CONFIRMEE | EXPEDIEE | LIVREE | ANNULEE
+  totalCents      Int
+  currency        String      @default("USD")
+  shippingName    String
+  shippingPhone   String
+  shippingAddress String
+  shippingCity    String
+  note            String?
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id             String  @id @default(cuid())
+  orderId        String
+  order          Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId      String?
+  product        Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  // On copie le nom, le prix et la boutique au moment de la commande :
+  // l'historique reste exact même si le produit est modifié ou supprimé.
+  productName    String
+  storeName      String
+  unitPriceCents Int
+  quantity       Int
+
+  @@index([orderId])
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  location    String
+  date        DateTime
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+}

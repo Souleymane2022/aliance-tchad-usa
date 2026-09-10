@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  /* Couleurs inspirées du drapeau tchadien (bleu, jaune, rouge) + tons neutres chauds */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dce7fd;
+  --color-brand-500: #2b5cab;
+  --color-brand-600: #1e4586;
+  --color-brand-700: #173868;
+  --color-brand-800: #122b4f;
+  --color-brand-900: #0d203c;
+  --color-accent-400: #ffd24d;
+  --color-accent-500: #fcc419;
+  --color-accent-600: #e8b000;
+  --color-danger-500: #d64545;
+  --color-danger-600: #b93838;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-stone-50 text-stone-900 antialiased;
+}
