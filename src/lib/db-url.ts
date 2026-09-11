@@ -15,26 +15,42 @@ function postgresUrlCandidates(): [string, string][] {
   );
 }
 
-/** URL pour l'application (préfère la connexion poolée, ex. Neon "-pooler"). */
-export function resolveDatabaseUrl(): string | undefined {
-  if (process.env.DATABASE_URL) return process.env.DATABASE_URL;
+function chooseDatabaseEntry(): [string, string] | undefined {
+  if (process.env.DATABASE_URL) return ["DATABASE_URL", process.env.DATABASE_URL];
   const candidates = postgresUrlCandidates();
   if (candidates.length === 0) return undefined;
-  const pooled =
+  return (
     candidates.find(([key]) => key.endsWith("PRISMA_URL")) ??
-    candidates.find(([, value]) => value.includes("-pooler"));
-  return (pooled ?? candidates[0])[1];
+    candidates.find(([, value]) => value.includes("-pooler")) ??
+    candidates[0]
+  );
 }
 
-/** URL directe (non poolée) pour les migrations Prisma. */
+/** URL pour l'application (préfère la connexion poolée, ex. Neon "-pooler"). */
+export function resolveDatabaseUrl(): string | undefined {
+  return chooseDatabaseEntry()?.[1];
+}
+
+/**
+ * URL directe (non poolée) pour les migrations Prisma.
+ * Dérivée uniquement de la MÊME famille de variables que l'URL retenue :
+ * jamais d'une variable pointant potentiellement vers une autre base.
+ */
 export function resolveDirectUrl(): string | undefined {
   if (process.env.DIRECT_URL) return process.env.DIRECT_URL;
-  const candidates = postgresUrlCandidates();
-  const direct =
-    candidates.find(([key]) => key.endsWith("_UNPOOLED")) ??
-    candidates.find(([key]) => key.endsWith("NON_POOLING")) ??
-    candidates.find(([, value]) => !value.includes("-pooler"));
-  if (direct) return direct[1];
-  const fallback = resolveDatabaseUrl();
-  return fallback ? fallback.replace("-pooler", "") : undefined;
+  const chosen = chooseDatabaseEntry();
+  if (!chosen) return undefined;
+  const [key, value] = chosen;
+  const sameFamilyKeys = [
+    `${key}_UNPOOLED`,
+    key.replace(/_URL$/, "_URL_NON_POOLING"),
+    key.replace(/_PRISMA_URL$/, "_URL_NON_POOLING"),
+  ];
+  for (const familyKey of sameFamilyKeys) {
+    const familyValue = process.env[familyKey];
+    if (familyValue && /^postgres(ql)?:\/\//.test(familyValue)) {
+      return familyValue;
+    }
+  }
+  return value.replace("-pooler", "");
 }

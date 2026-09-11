@@ -61,7 +61,25 @@ if (migrate.status !== 0) {
       "\nℹ Base non vide sans historique de migrations : synchronisation " +
         "directe du schéma (prisma db push), puis baseline des migrations."
     );
-    runOrExit("npx", ["prisma", "db", "push", "--skip-generate"]);
+    const push = run("npx", ["prisma", "db", "push", "--skip-generate"]);
+    if (push.status !== 0) {
+      const pushOutput = `${push.stdout ?? ""}${push.stderr ?? ""}`;
+      if (/data loss|about to drop/i.test(pushOutput)) {
+        console.error(
+          "\n⛔ ARRÊT DE SÉCURITÉ : la base connectée contient déjà les données\n" +
+            "   d'une AUTRE application (tables avec des lignes existantes).\n" +
+            "   Rien n'a été modifié ni supprimé.\n\n" +
+            "   ➜ Ce site doit utiliser sa PROPRE base, vide et dédiée :\n" +
+            "     1. Vercel → onglet Storage → Create Database → Neon\n" +
+            "        (nommez-la par ex. alliance-db)\n" +
+            "     2. Connectez-la à ce projet avec le préfixe DATABASE\n" +
+            "     3. Relancez le déploiement.\n" +
+            "   (Le site utilisera DATABASE_URL en priorité ; l'autre base\n" +
+            "   ne sera plus jamais touchée.)\n"
+        );
+      }
+      process.exit(push.status ?? 1);
+    }
     let migrationNames = [];
     try {
       migrationNames = fs
