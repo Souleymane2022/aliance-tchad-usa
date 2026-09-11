@@ -47,10 +47,24 @@ export function resolveDirectUrl(): string | undefined {
     key.replace(/_PRISMA_URL$/, "_URL_NON_POOLING"),
   ];
   for (const familyKey of sameFamilyKeys) {
+    if (familyKey === key) continue;
     const familyValue = process.env[familyKey];
-    if (familyValue && /^postgres(ql)?:\/\//.test(familyValue)) {
+    if (
+      familyValue &&
+      /^postgres(ql)?:\/\//.test(familyValue) &&
+      sameDatabaseName(familyValue, value)
+    ) {
       return familyValue;
     }
   }
   return value.replace("-pooler", "");
+}
+
+/** Vraie seulement si les deux URLs désignent la même base (même chemin). */
+function sameDatabaseName(a: string, b: string): boolean {
+  try {
+    return new URL(a).pathname === new URL(b).pathname;
+  } catch {
+    return false;
+  }
 }

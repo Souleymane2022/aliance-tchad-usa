@@ -37,7 +37,12 @@ export function ensureDatabaseEnv(env = process.env) {
       chosenKey.replace(/_URL$/, "_URL_NON_POOLING"),
       chosenKey.replace(/_PRISMA_URL$/, "_URL_NON_POOLING"),
     ];
-    const familyKey = sameFamilyKeys.find((key) => isPostgresUrl(env[key]));
+    const familyKey = sameFamilyKeys.find(
+      (key) =>
+        key !== chosenKey &&
+        isPostgresUrl(env[key]) &&
+        sameDatabaseName(env[key], env.DATABASE_URL)
+    );
     if (familyKey) {
       env.DIRECT_URL = env[familyKey];
       console.log(`ℹ DIRECT_URL absente : utilisation de ${familyKey}.`);
@@ -47,4 +52,17 @@ export function ensureDatabaseEnv(env = process.env) {
   }
 
   return Boolean(env.DATABASE_URL);
+}
+
+/**
+ * Vraie seulement si les deux URLs désignent la même base (même nom de
+ * base dans le chemin). Empêche les migrations de partir sur une autre
+ * base que celle de l'application.
+ */
+function sameDatabaseName(a, b) {
+  try {
+    return new URL(a).pathname === new URL(b).pathname;
+  } catch {
+    return false;
+  }
 }
