@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBanner } from "@/components/PageBanner";
+import { Portrait } from "@/components/Portrait";
 import {
   histoireTchad,
   chefsEtatTchad,
@@ -25,13 +26,14 @@ export default function TchadPage() {
           { href: "/decouvrir/tchad", label: "Le Tchad" },
         ]}
         image="/images/hero-tchad.svg"
+        flag={{ src: "/images/drapeau-td.svg", alt: "Drapeau du Tchad" }}
       />
 
       {/* Repères */}
       <section className="border-b border-stone-200 bg-white">
         <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-stone-200 text-center md:grid-cols-4">
           {[
-            ["N'Djamena", "Capitale"],
+            ["🏛️ N'Djamena", "Capitale"],
             ["≈ 18 millions", "Habitants"],
             ["1,28 M km²", "Superficie (5e d'Afrique)"],
             ["11 août 1960", "Indépendance"],
@@ -74,19 +76,29 @@ export default function TchadPage() {
             Les chefs d'État depuis 1960
           </h2>
           <ol className="mt-8 space-y-0 border-l-4 border-brand-600">
-            {chefsEtatTchad.map((chef) => (
+            {chefsEtatTchad.map((chef, index) => (
               <li key={`${chef.nom}-${chef.periode}`} className="relative pb-8 pl-6">
                 <span
                   aria-hidden
                   className="absolute -left-[10px] top-1 h-4 w-4 rounded-full border-4 border-white bg-accent-500"
                 />
-                <p className="text-sm font-bold uppercase tracking-wide text-accent-500">
-                  {chef.periode}
-                </p>
-                <h3 className="text-lg font-bold text-brand-800">{chef.nom}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-stone-700">
-                  {chef.note}
-                </p>
+                <div className="flex items-start gap-4">
+                  <Portrait
+                    photoSrc={`/images/tchad-chefs/${index + 1}.jpg`}
+                    fallbackSrc={`/images/tchad-chefs/medaillon-${index + 1}.svg`}
+                    alt={`Portrait : ${chef.nom}`}
+                    className="h-20 w-20 shrink-0"
+                  />
+                  <div>
+                    <p className="text-sm font-bold uppercase tracking-wide text-accent-500">
+                      {chef.periode}
+                    </p>
+                    <h3 className="text-lg font-bold text-brand-800">{chef.nom}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-stone-700">
+                      {chef.note}
+                    </p>
+                  </div>
+                </div>
               </li>
             ))}
           </ol>

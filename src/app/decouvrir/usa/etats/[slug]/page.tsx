@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageBanner } from "@/components/PageBanner";
+import { StateFlag } from "@/components/StateFlag";
 import { etatsUsa } from "@/data/usa";
 
 export function generateStaticParams() {
@@ -48,14 +49,27 @@ export default async function EtatPage({
       />
 
       <div className="mx-auto max-w-4xl px-4 py-12">
-        <section>
+        <section className="flex flex-wrap items-center gap-5 border border-stone-200 bg-stone-50 p-5">
+          <StateFlag code={etat.code} name={etat.nom} className="h-20 w-32 text-xl" />
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-accent-500">
+              Drapeau de l'État
+            </p>
+            <p className="mt-1 font-serif-brand text-lg font-black text-brand-800">
+              {etat.nom} — « {etat.surnom} »
+            </p>
+            <p className="text-sm text-stone-600">Capitale : {etat.capitale}</p>
+          </div>
+        </section>
+
+        <section className="mt-10">
           <h2 className="section-title text-2xl font-black text-brand-800">
             Économie
           </h2>
           <p className="mt-4 leading-relaxed text-stone-700">{etat.economie}</p>
         </section>
 
-        <section className="mt-10">
+        <section className="mt-10 border-t-0">
           <h2 className="section-title text-2xl font-black text-brand-800">
             Mode de vie
           </h2>

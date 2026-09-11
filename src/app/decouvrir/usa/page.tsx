@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBanner } from "@/components/PageBanner";
+import { Portrait } from "@/components/Portrait";
+import { StateFlag } from "@/components/StateFlag";
 import { histoireUsa, presidentsUsa, figuresUsa, etatsUsa } from "@/data/usa";
+
+const PARTY_STYLES: Record<string, string> = {
+  "Républicain": "bg-red-100 text-red-900",
+  "Démocrate": "bg-blue-100 text-blue-900",
+  "Fédéraliste": "bg-amber-100 text-amber-900",
+  "Whig": "bg-amber-100 text-amber-900",
+  "Républicain-démocrate": "bg-green-100 text-green-900",
+  "Indépendant": "bg-stone-200 text-stone-800",
+};
 
 export const metadata: Metadata = {
   title: "Les États-Unis — histoire, présidents et États",
@@ -20,6 +31,7 @@ export default function UsaPage() {
           { href: "/decouvrir/usa", label: "Les États-Unis" },
         ]}
         image="/images/hero-usa.svg"
+        flag={{ src: "/images/drapeau-us.svg", alt: "Drapeau des États-Unis" }}
       />
 
       {/* Repères */}
@@ -72,29 +84,32 @@ export default function UsaPage() {
             {presidentsUsa.length} présidences depuis 1789 (Grover Cleveland a
             exercé deux mandats non consécutifs, tout comme Donald Trump).
           </p>
-          <div className="mt-6 overflow-x-auto border border-stone-200 bg-white">
-            <table className="w-full min-w-[480px] text-sm">
-              <thead>
-                <tr className="bg-brand-800 text-left text-white">
-                  <th className="px-3 py-2.5 font-bold">N°</th>
-                  <th className="px-3 py-2.5 font-bold">Président</th>
-                  <th className="px-3 py-2.5 font-bold">Mandat</th>
-                  <th className="px-3 py-2.5 font-bold">Parti</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-stone-200">
-                {presidentsUsa.map((p) => (
-                  <tr key={`${p.n}-${p.periode}`} className="odd:bg-stone-50">
-                    <td className="px-3 py-2 font-bold text-brand-700">{p.n}</td>
-                    <td className="px-3 py-2 font-semibold text-stone-900">
-                      {p.nom}
-                    </td>
-                    <td className="px-3 py-2 text-stone-600">{p.periode}</td>
-                    <td className="px-3 py-2 text-stone-600">{p.parti}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {presidentsUsa.map((p) => (
+              <article
+                key={`${p.n}-${p.periode}`}
+                className="flex flex-col items-center border border-stone-200 bg-white p-4 text-center"
+              >
+                <Portrait
+                  photoSrc={`/images/presidents/${p.n}.jpg`}
+                  fallbackSrc={`/images/presidents/medaillon-${p.n}.svg`}
+                  alt={`Portrait : ${p.nom} (${p.n}e présidence)`}
+                  className="h-24 w-24"
+                />
+                <p className="mt-3 text-xs font-bold uppercase tracking-widest text-stone-400">
+                  {p.n}e présidence
+                </p>
+                <h3 className="mt-0.5 font-bold leading-snug text-brand-800">
+                  {p.nom}
+                </h3>
+                <p className="text-sm text-stone-500">{p.periode}</p>
+                <p
+                  className={`mt-2 rounded-full px-2.5 py-0.5 text-xs font-semibold ${PARTY_STYLES[p.parti] ?? "bg-stone-200 text-stone-800"}`}
+                >
+                  {p.parti}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -139,13 +154,18 @@ export default function UsaPage() {
                 href={`/decouvrir/usa/etats/${etat.slug}`}
                 className="group overflow-hidden border border-brand-700 bg-brand-700/50 transition hover:border-accent-500 hover:bg-brand-700"
               >
-                <div className="aspect-video overflow-hidden">
+                <div className="relative aspect-video overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`/images/usa/${etat.slug}.svg`}
                     alt={`Paysage stylisé de l'État : ${etat.nom}`}
                     loading="lazy"
                     className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                  />
+                  <StateFlag
+                    code={etat.code}
+                    name={etat.nom}
+                    className="absolute bottom-1.5 right-1.5 h-7 w-11 text-[10px]"
                   />
                 </div>
                 <div className="p-3">

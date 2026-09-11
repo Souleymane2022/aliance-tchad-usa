@@ -127,6 +127,8 @@ export const figuresUsa: { nom: string; domaine: string; note: string }[] = [
 
 export type Etat = {
   slug: string;
+  /** Code postal à deux lettres (drapeau flagcdn : us-<code>). */
+  code: string;
   nom: string;
   capitale: string;
   surnom: string;
@@ -137,6 +139,7 @@ export type Etat = {
 export const etatsUsa: Etat[] = [
   {
     slug: "alabama",
+    code: "al",
     nom: "Alabama",
     capitale: "Montgomery",
     surnom: "Yellowhammer State",
@@ -145,6 +148,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "alaska",
+    code: "ak",
     nom: "Alaska",
     capitale: "Juneau",
     surnom: "The Last Frontier",
@@ -153,6 +157,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "arizona",
+    code: "az",
     nom: "Arizona",
     capitale: "Phoenix",
     surnom: "Grand Canyon State",
@@ -161,6 +166,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "arkansas",
+    code: "ar",
     nom: "Arkansas",
     capitale: "Little Rock",
     surnom: "The Natural State",
@@ -169,6 +175,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "californie",
+    code: "ca",
     nom: "Californie",
     capitale: "Sacramento",
     surnom: "Golden State",
@@ -177,6 +184,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "caroline-du-nord",
+    code: "nc",
     nom: "Caroline du Nord",
     capitale: "Raleigh",
     surnom: "Tar Heel State",
@@ -185,6 +193,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "caroline-du-sud",
+    code: "sc",
     nom: "Caroline du Sud",
     capitale: "Columbia",
     surnom: "Palmetto State",
@@ -193,6 +202,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "colorado",
+    code: "co",
     nom: "Colorado",
     capitale: "Denver",
     surnom: "Centennial State",
@@ -201,6 +211,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "connecticut",
+    code: "ct",
     nom: "Connecticut",
     capitale: "Hartford",
     surnom: "Constitution State",
@@ -209,6 +220,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "dakota-du-nord",
+    code: "nd",
     nom: "Dakota du Nord",
     capitale: "Bismarck",
     surnom: "Peace Garden State",
@@ -217,6 +229,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "dakota-du-sud",
+    code: "sd",
     nom: "Dakota du Sud",
     capitale: "Pierre",
     surnom: "Mount Rushmore State",
@@ -225,6 +238,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "delaware",
+    code: "de",
     nom: "Delaware",
     capitale: "Dover",
     surnom: "The First State",
@@ -233,6 +247,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "floride",
+    code: "fl",
     nom: "Floride",
     capitale: "Tallahassee",
     surnom: "Sunshine State",
@@ -241,6 +256,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "georgie",
+    code: "ga",
     nom: "Géorgie",
     capitale: "Atlanta",
     surnom: "Peach State",
@@ -249,6 +265,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "hawai",
+    code: "hi",
     nom: "Hawaï",
     capitale: "Honolulu",
     surnom: "Aloha State",
@@ -257,6 +274,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "idaho",
+    code: "id",
     nom: "Idaho",
     capitale: "Boise",
     surnom: "Gem State",
@@ -265,6 +283,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "illinois",
+    code: "il",
     nom: "Illinois",
     capitale: "Springfield",
     surnom: "Prairie State",
@@ -273,6 +292,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "indiana",
+    code: "in",
     nom: "Indiana",
     capitale: "Indianapolis",
     surnom: "Hoosier State",
@@ -281,6 +301,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "iowa",
+    code: "ia",
     nom: "Iowa",
     capitale: "Des Moines",
     surnom: "Hawkeye State",
@@ -289,6 +310,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "kansas",
+    code: "ks",
     nom: "Kansas",
     capitale: "Topeka",
     surnom: "Sunflower State",
@@ -297,6 +319,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "kentucky",
+    code: "ky",
     nom: "Kentucky",
     capitale: "Frankfort",
     surnom: "Bluegrass State",
@@ -305,6 +328,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "louisiane",
+    code: "la",
     nom: "Louisiane",
     capitale: "Baton Rouge",
     surnom: "Pelican State",
@@ -313,6 +337,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "maine",
+    code: "me",
     nom: "Maine",
     capitale: "Augusta",
     surnom: "Pine Tree State",
@@ -321,6 +346,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "maryland",
+    code: "md",
     nom: "Maryland",
     capitale: "Annapolis",
     surnom: "Old Line State",
@@ -329,6 +355,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "massachusetts",
+    code: "ma",
     nom: "Massachusetts",
     capitale: "Boston",
     surnom: "Bay State",
@@ -337,6 +364,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "michigan",
+    code: "mi",
     nom: "Michigan",
     capitale: "Lansing",
     surnom: "Great Lakes State",
@@ -345,6 +373,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "minnesota",
+    code: "mn",
     nom: "Minnesota",
     capitale: "Saint Paul",
     surnom: "North Star State",
@@ -353,6 +382,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "mississippi",
+    code: "ms",
     nom: "Mississippi",
     capitale: "Jackson",
     surnom: "Magnolia State",
@@ -361,6 +391,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "missouri",
+    code: "mo",
     nom: "Missouri",
     capitale: "Jefferson City",
     surnom: "Show Me State",
@@ -369,6 +400,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "montana",
+    code: "mt",
     nom: "Montana",
     capitale: "Helena",
     surnom: "Big Sky Country",
@@ -377,6 +409,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "nebraska",
+    code: "ne",
     nom: "Nebraska",
     capitale: "Lincoln",
     surnom: "Cornhusker State",
@@ -385,6 +418,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "nevada",
+    code: "nv",
     nom: "Nevada",
     capitale: "Carson City",
     surnom: "Silver State",
@@ -393,6 +427,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "new-hampshire",
+    code: "nh",
     nom: "New Hampshire",
     capitale: "Concord",
     surnom: "Granite State",
@@ -401,6 +436,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "new-jersey",
+    code: "nj",
     nom: "New Jersey",
     capitale: "Trenton",
     surnom: "Garden State",
@@ -409,6 +445,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "new-york",
+    code: "ny",
     nom: "New York",
     capitale: "Albany",
     surnom: "Empire State",
@@ -417,6 +454,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "nouveau-mexique",
+    code: "nm",
     nom: "Nouveau-Mexique",
     capitale: "Santa Fe",
     surnom: "Land of Enchantment",
@@ -425,6 +463,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "ohio",
+    code: "oh",
     nom: "Ohio",
     capitale: "Columbus",
     surnom: "Buckeye State",
@@ -433,6 +472,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "oklahoma",
+    code: "ok",
     nom: "Oklahoma",
     capitale: "Oklahoma City",
     surnom: "Sooner State",
@@ -441,6 +481,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "oregon",
+    code: "or",
     nom: "Oregon",
     capitale: "Salem",
     surnom: "Beaver State",
@@ -449,6 +490,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "pennsylvanie",
+    code: "pa",
     nom: "Pennsylvanie",
     capitale: "Harrisburg",
     surnom: "Keystone State",
@@ -457,6 +499,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "rhode-island",
+    code: "ri",
     nom: "Rhode Island",
     capitale: "Providence",
     surnom: "Ocean State",
@@ -465,6 +508,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "tennessee",
+    code: "tn",
     nom: "Tennessee",
     capitale: "Nashville",
     surnom: "Volunteer State",
@@ -473,6 +517,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "texas",
+    code: "tx",
     nom: "Texas",
     capitale: "Austin",
     surnom: "Lone Star State",
@@ -481,6 +526,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "utah",
+    code: "ut",
     nom: "Utah",
     capitale: "Salt Lake City",
     surnom: "Beehive State",
@@ -489,6 +535,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "vermont",
+    code: "vt",
     nom: "Vermont",
     capitale: "Montpelier",
     surnom: "Green Mountain State",
@@ -497,6 +544,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "virginie",
+    code: "va",
     nom: "Virginie",
     capitale: "Richmond",
     surnom: "Old Dominion",
@@ -505,6 +553,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "virginie-occidentale",
+    code: "wv",
     nom: "Virginie-Occidentale",
     capitale: "Charleston",
     surnom: "Mountain State",
@@ -513,6 +562,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "washington",
+    code: "wa",
     nom: "Washington",
     capitale: "Olympia",
     surnom: "Evergreen State",
@@ -521,6 +571,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "wisconsin",
+    code: "wi",
     nom: "Wisconsin",
     capitale: "Madison",
     surnom: "Badger State",
@@ -529,6 +580,7 @@ export const etatsUsa: Etat[] = [
   },
   {
     slug: "wyoming",
+    code: "wy",
     nom: "Wyoming",
     capitale: "Cheyenne",
     surnom: "Equality State",

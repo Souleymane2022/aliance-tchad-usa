@@ -30,7 +30,12 @@ export default function DecouvrirPage() {
               alt="Paysage stylisé du Tchad : dunes, palmiers et pirogue"
               className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
             />
-            <span className="absolute bottom-2 right-3 text-4xl drop-shadow" aria-hidden>🇹🇩</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/drapeau-td.svg"
+              alt="Drapeau du Tchad"
+              className="absolute bottom-2 right-3 h-9 w-14 border border-white/60 object-cover shadow"
+            />
           </div>
           <div className="border-t-4 border-accent-500 p-6">
             <h2 className="text-2xl font-black text-brand-800 group-hover:text-brand-600">
@@ -59,7 +64,12 @@ export default function DecouvrirPage() {
               alt="Paysage stylisé des États-Unis : montagnes et gratte-ciel"
               className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
             />
-            <span className="absolute bottom-2 right-3 text-4xl drop-shadow" aria-hidden>🇺🇸</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/drapeau-us.svg"
+              alt="Drapeau des États-Unis"
+              className="absolute bottom-2 right-3 h-9 w-14 border border-white/60 object-cover shadow"
+            />
           </div>
           <div className="border-t-4 border-accent-500 p-6">
             <h2 className="text-2xl font-black text-brand-800 group-hover:text-brand-600">

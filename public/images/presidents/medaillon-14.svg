@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+<defs>
+<clipPath id="c"><circle cx="120" cy="120" r="106"/></clipPath>
+<radialGradient id="bg" cx="0.5" cy="0.38" r="0.75">
+<stop offset="0" stop-color="#f4ecd9"/><stop offset="1" stop-color="#d8ccb2"/>
+</radialGradient>
+</defs>
+<circle cx="120" cy="120" r="116" fill="#0a4480"/>
+<circle cx="120" cy="120" r="110" fill="#f8f3e6"/>
+<g clip-path="url(#c)">
+<rect width="240" height="240" fill="url(#bg)"/>
+<line x1="24" y1="26" x2="216" y2="26" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="33" x2="216" y2="33" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="40" x2="216" y2="40" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="47" x2="216" y2="47" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="54" x2="216" y2="54" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="61" x2="216" y2="61" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="68" x2="216" y2="68" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="75" x2="216" y2="75" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="82" x2="216" y2="82" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="89" x2="216" y2="89" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="96" x2="216" y2="96" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="103" x2="216" y2="103" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="110" x2="216" y2="110" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="117" x2="216" y2="117" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="124" x2="216" y2="124" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="131" x2="216" y2="131" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="138" x2="216" y2="138" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="145" x2="216" y2="145" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="152" x2="216" y2="152" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="159" x2="216" y2="159" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="166" x2="216" y2="166" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="173" x2="216" y2="173" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="180" x2="216" y2="180" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="187" x2="216" y2="187" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="194" x2="216" y2="194" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="201" x2="216" y2="201" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="208" x2="216" y2="208" stroke="#c9bfa8" stroke-width="1"/><line x1="24" y1="215" x2="216" y2="215" stroke="#c9bfa8" stroke-width="1"/>
+<ellipse cx="120" cy="206" rx="64" ry="58" fill="#3d3428"/>
+<ellipse cx="120" cy="204" rx="58" ry="52" fill="#5a4d3c"/>
+<rect x="110" y="132" width="20" height="30" fill="#e8d9c3"/>
+<ellipse cx="120" cy="104" rx="34" ry="42" fill="#e8d9c3"/>
+<path d="M108 108 Q 120 104 132 108" stroke="#b39a76" stroke-width="2.5" fill="none"/>
+<circle cx="107" cy="96" r="3" fill="#3d3428"/>
+<circle cx="133" cy="96" r="3" fill="#3d3428"/>
+<path d="M112 124 Q 120 129 128 124" stroke="#a5825d" stroke-width="2.5" fill="none"/>
+<path d="M84 100 Q 80 52 116 52 Q 162 54 154 104 Q 146 70 114 70 Q 88 72 84 100 Z" fill="#3d3428"/>
+<path d="M90 96 Q 88 116 96 128 L100 124 Q 94 112 94 96 Z" fill="#3d3428" opacity="0.8"/>
+<path d="M150 96 Q 152 116 144 128 L140 124 Q 146 112 146 96 Z" fill="#3d3428" opacity="0.8"/>
+<path d="M104 148 L120 168 L136 148 L128 178 L112 178 Z" fill="#f4efe4"/>
+<path d="M115 168 L125 168 L123 190 L117 190 Z" fill="#0a4480"/>
+</g>
+<circle cx="120" cy="120" r="110" fill="none" stroke="#b7a984" stroke-width="2"/>
+<text x="120" y="218" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#f8f3e6">N° 14</text>
+</svg>
