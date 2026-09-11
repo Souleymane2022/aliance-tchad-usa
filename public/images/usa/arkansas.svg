@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#d8ecfb"/><stop offset="1" stop-color="#9ecdec"/>
+</linearGradient></defs>
+<rect width="800" height="450" fill="url(#s)"/>
+<circle cx="235.64719448797405" cy="110" r="109.2" fill="#fff0c6" opacity="0.35"/>
+<circle cx="235.64719448797405" cy="110" r="42" fill="#fff8e2"/>
+<path d="M543.3283817674965 87.09103227127343 q 7.598646934516728 -6.648816067702136 15.197293869033455 0 q 7.598646934516728 -6.648816067702136 15.197293869033455 0" stroke="#4a6a4a" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M105.33190208487213 95.12567862169817 q 4.807246632501482 -4.206340803438797 9.614493265002965 0 q 4.807246632501482 -4.206340803438797 9.614493265002965 0" stroke="#4a6a4a" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M286.15682122297585 115.86241962388158 q 7.618792765215039 -6.666443669563159 15.237585530430078 0 q 7.618792765215039 -6.666443669563159 15.237585530430078 0" stroke="#4a6a4a" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M0 450 L0 300 Q 67 285 133 291 Q 200 286 267 296 Q 333 278 400 297 Q 467 285 533 290 Q 600 282 667 294 Q 733 277 800 290 L800 450 Z" fill="#b9cf6e" opacity="0.9"/>
+<path d="M0 450 L0 340 Q 67 316 133 339 Q 200 329 267 333 Q 333 323 400 332 Q 467 330 533 338 Q 600 317 667 331 Q 733 313 800 331 L800 450 Z" fill="#8fb84f" opacity="1"/>
+<path d="M0 450 L0 385 Q 80 372 160 381 Q 240 363 320 377 Q 400 367 480 381 Q 560 370 640 379 Q 720 370 800 383 L800 450 Z" fill="#5f8f3a" opacity="1"/>
+<g transform="translate(638.2973669469357 395) scale(1.05)">
+<rect x="-34" y="-30" width="68" height="30" fill="#8f2b26"/>
+<path d="M-40 -30 L0 -56 L40 -30 Z" fill="#6d1f1b"/>
+<rect x="-9" y="-22" width="18" height="22" fill="#4a1512"/>
+<rect x="26" y="-96" width="8" height="66" fill="#9aa3ad"/>
+<ellipse cx="30" cy="-100" rx="16" ry="7" fill="#9aa3ad"/></g>
+</svg>

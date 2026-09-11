@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffe9b8"/><stop offset="1" stop-color="#f0b45c"/>
+</linearGradient></defs>
+<rect width="800" height="450" fill="url(#s)"/>
+<circle cx="653.9623314142227" cy="120" r="109.2" fill="#ffe9b0" opacity="0.35"/>
+<circle cx="653.9623314142227" cy="120" r="42" fill="#fff4d6"/>
+<path d="M170.73327027726918 141.33487755898386 q 10.302292866818608 -9.014506258466282 20.604585733637215 0 q 10.302292866818608 -9.014506258466282 20.604585733637215 0" stroke="#6b4318" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M236.14044235553592 126.21416318463162 q 6.7005076026543975 -5.862944152322598 13.401015205308795 0 q 6.7005076026543975 -5.862944152322598 13.401015205308795 0" stroke="#6b4318" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M269.10027225501835 128.34452431183308 q 8.951582816243171 -7.832634964212774 17.903165632486342 0 q 8.951582816243171 -7.832634964212774 17.903165632486342 0" stroke="#6b4318" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M0 450 L0 320 Q 67 294 133 308 Q 200 271 267 304 Q 333 277 400 313 Q 467 287 533 310 Q 600 281 667 316 Q 733 284 800 310 L800 450 Z" fill="#caa14e" opacity="0.9"/>
+<path d="M0 450 L0 370 Q 100 346 200 357 Q 300 351 400 362 Q 500 346 600 357 Q 700 350 800 361 L800 450 Z" fill="#a97f36" opacity="1"/>
+<path d="M0 450 L0 412 Q 67 398 133 399 Q 200 400 267 411 Q 333 390 400 404 Q 467 387 533 405 Q 600 393 667 402 Q 733 401 800 406 L800 450 Z" fill="#7d5a24" opacity="1"/>
+<g transform="translate(187.4265933316201 398) scale(1.25)">
+<path d="M0 0 L-4 -34 M-4 -34 L-20 -48 M-4 -34 L14 -50" stroke="#4c3411" stroke-width="5" fill="none" stroke-linecap="round"/>
+<ellipse cx="-2" cy="-56" rx="42" ry="12" fill="#4c3411"/></g>
+<g transform="translate(586.032670265995 412) scale(0.85)">
+<path d="M0 0 L-4 -34 M-4 -34 L-20 -48 M-4 -34 L14 -50" stroke="#4c3411" stroke-width="5" fill="none" stroke-linecap="round"/>
+<ellipse cx="-2" cy="-56" rx="42" ry="12" fill="#4c3411"/></g>
+</svg>

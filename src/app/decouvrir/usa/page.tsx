@@ -19,6 +19,7 @@ export default function UsaPage() {
           { href: "/decouvrir", label: "Découvrir" },
           { href: "/decouvrir/usa", label: "Les États-Unis" },
         ]}
+        image="/images/hero-usa.svg"
       />
 
       {/* Repères */}
@@ -131,17 +132,28 @@ export default function UsaPage() {
             Cliquez sur un État pour découvrir sa capitale, son économie et
             son mode de vie.
           </p>
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {etatsUsa.map((etat) => (
               <Link
                 key={etat.slug}
                 href={`/decouvrir/usa/etats/${etat.slug}`}
-                className="group border border-brand-700 bg-brand-700/50 p-3.5 transition hover:border-accent-500 hover:bg-brand-700"
+                className="group overflow-hidden border border-brand-700 bg-brand-700/50 transition hover:border-accent-500 hover:bg-brand-700"
               >
-                <p className="font-bold text-white group-hover:text-accent-400">
-                  {etat.nom}
-                </p>
-                <p className="mt-1 text-xs text-stone-300">{etat.capitale}</p>
+                <div className="aspect-video overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/images/usa/${etat.slug}.svg`}
+                    alt={`Paysage stylisé de l'État : ${etat.nom}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-3">
+                  <p className="font-bold text-white group-hover:text-accent-400">
+                    {etat.nom}
+                  </p>
+                  <p className="mt-0.5 text-xs text-stone-300">{etat.capitale}</p>
+                </div>
               </Link>
             ))}
           </div>

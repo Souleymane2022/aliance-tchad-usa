@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffe3c1"/><stop offset="1" stop-color="#f6a06b"/>
+</linearGradient><linearGradient id="w" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#4d90bd"/><stop offset="1" stop-color="#245e8a"/>
+</linearGradient></defs>
+<rect width="800" height="450" fill="url(#s)"/>
+<circle cx="400" cy="210" r="124.80000000000001" fill="#ffdf9e" opacity="0.35"/>
+<circle cx="400" cy="210" r="48" fill="#fff0cd"/>
+<path d="M563.4051158977672 149.07468107761815 q 8.986461021378636 -7.863153393706306 17.972922042757272 0 q 8.986461021378636 -7.863153393706306 17.972922042757272 0" stroke="#8a4a2a" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M545.797773678787 109.81864714762196 q 6.424445660598575 -5.621389953023753 12.84889132119715 0 q 6.424445660598575 -5.621389953023753 12.84889132119715 0" stroke="#8a4a2a" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M392.54324002657086 128.3999174600467 q 9.938583019748329 -8.696260142279787 19.877166039496657 0 q 9.938583019748329 -8.696260142279787 19.877166039496657 0" stroke="#8a4a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect y="250" width="800" height="200" fill="url(#w)"/>
+<path d="M0 252 Q 400 244 800 252 L800 262 Q 400 268 0 262 Z" fill="#ffd9a8" opacity="0.6"/>
+<path d="M0 450 L0 450 Q 80 351 160 425 Q 240 409 320 447 Q 400 412 480 422 Q 560 398 640 434 Q 720 355 800 419 L800 450 Z" fill="#e8cf9e" opacity="1"/>
+<g transform="translate(197.56163328886032 420) scale(1.2)">
+<path d="M-3 0 Q 2 -30 8 -52" stroke="#3f4a33" stroke-width="7" fill="none" stroke-linecap="round"/>
+<g transform="translate(8 -52)"><path d="M0 0 Q -31.949549106720884 -30.104241719908025 -54.50217200558268 -20.840402866513376" stroke="#3f4a33" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M0 0 Q -19.501598835935567 -35.8298245314679 -33.26743330836067 -30.383040885779835" stroke="#3f4a33" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M0 0 Q 0 -38 0 -34" stroke="#3f4a33" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M0 0 Q 19.501598835935567 -35.8298245314679 33.26743330836067 -30.383040885779835" stroke="#3f4a33" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M0 0 Q 31.949549106720884 -30.104241719908025 54.50217200558268 -20.840402866513376" stroke="#3f4a33" stroke-width="5" fill="none" stroke-linecap="round"/></g></g>
+</svg>

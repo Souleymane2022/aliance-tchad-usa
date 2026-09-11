@@ -24,6 +24,7 @@ export default function TchadPage() {
           { href: "/decouvrir", label: "Découvrir" },
           { href: "/decouvrir/tchad", label: "Le Tchad" },
         ]}
+        image="/images/hero-tchad.svg"
       />
 
       {/* Repères */}
@@ -125,19 +126,30 @@ export default function TchadPage() {
             Cliquez sur une province pour découvrir sa présentation, son
             chef-lieu et son économie.
           </p>
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {provincesTchad.map((province) => (
               <Link
                 key={province.slug}
                 href={`/decouvrir/tchad/provinces/${province.slug}`}
-                className="group border border-brand-700 bg-brand-700/50 p-4 transition hover:border-accent-500 hover:bg-brand-700"
+                className="group overflow-hidden border border-brand-700 bg-brand-700/50 transition hover:border-accent-500 hover:bg-brand-700"
               >
-                <p className="font-bold text-white group-hover:text-accent-400">
-                  {province.nom}
-                </p>
-                <p className="mt-1 text-xs text-stone-300">
-                  Chef-lieu : {province.chefLieu}
-                </p>
+                <div className="aspect-video overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/images/tchad/${province.slug}.svg`}
+                    alt={`Paysage stylisé de la province : ${province.nom}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-3">
+                  <p className="font-bold text-white group-hover:text-accent-400">
+                    {province.nom}
+                  </p>
+                  <p className="mt-0.5 text-xs text-stone-300">
+                    Chef-lieu : {province.chefLieu}
+                  </p>
+                </div>
               </Link>
             ))}
           </div>

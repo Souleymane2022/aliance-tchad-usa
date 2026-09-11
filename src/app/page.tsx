@@ -26,24 +26,14 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* Héro institutionnel : image de fond stylisée + encart bleu marine */}
-      <section className="relative isolate overflow-hidden bg-brand-700">
+      {/* Héro institutionnel : grande image + encart bleu marine */}
+      <section className="relative isolate overflow-hidden bg-brand-900">
         <div
           aria-hidden
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(115deg, #163e66 0%, #0a4480 45%, #205493 100%)",
-          }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url(/images/hero-accueil.svg)" }}
         />
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-15"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 85% 20%, #c61826 0, transparent 35%), radial-gradient(circle at 10% 85%, #ffd24d 0, transparent 30%)",
-          }}
-        />
+        <div aria-hidden className="absolute inset-0 bg-brand-900/45" />
         <div className="relative mx-auto max-w-6xl px-4 py-16 sm:py-24">
           <div className="max-w-2xl border-l-4 border-accent-500 bg-brand-900/80 p-6 sm:p-10">
             <p className="text-sm font-bold uppercase tracking-widest text-stone-300">
@@ -114,9 +104,17 @@ export default async function HomePage() {
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <Link
               href="/decouvrir/tchad"
-              className="group flex items-center gap-5 border border-stone-200 p-6 transition hover:-translate-y-0.5 hover:shadow-lg"
+              className="group flex items-center gap-5 border border-stone-200 p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
             >
-              <span className="text-5xl" aria-hidden>🇹🇩</span>
+              <span className="relative h-24 w-36 shrink-0 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/hero-tchad.svg"
+                  alt=""
+                  className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                />
+                <span className="absolute bottom-1 right-1.5 text-xl drop-shadow" aria-hidden>🇹🇩</span>
+              </span>
               <span>
                 <span className="block text-xl font-black text-brand-800 group-hover:text-brand-600">
                   Le Tchad
@@ -129,9 +127,17 @@ export default async function HomePage() {
             </Link>
             <Link
               href="/decouvrir/usa"
-              className="group flex items-center gap-5 border border-stone-200 p-6 transition hover:-translate-y-0.5 hover:shadow-lg"
+              className="group flex items-center gap-5 border border-stone-200 p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
             >
-              <span className="text-5xl" aria-hidden>🇺🇸</span>
+              <span className="relative h-24 w-36 shrink-0 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/hero-usa.svg"
+                  alt=""
+                  className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                />
+                <span className="absolute bottom-1 right-1.5 text-xl drop-shadow" aria-hidden>🇺🇸</span>
+              </span>
               <span>
                 <span className="block text-xl font-black text-brand-800 group-hover:text-brand-600">
                   Les États-Unis

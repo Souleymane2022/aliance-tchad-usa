@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffe9b8"/><stop offset="1" stop-color="#f0b45c"/>
+</linearGradient></defs>
+<rect width="800" height="450" fill="url(#s)"/>
+<circle cx="717.4236868321896" cy="120" r="109.2" fill="#ffe9b0" opacity="0.35"/>
+<circle cx="717.4236868321896" cy="120" r="42" fill="#fff4d6"/>
+<path d="M240.21862695924938 140.8401395799592 q 5.194778128713369 -4.545430862624198 10.389556257426738 0 q 5.194778128713369 -4.545430862624198 10.389556257426738 0" stroke="#6b4318" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M401.20633171871305 104.6646528574638 q 6.025782775133848 -5.272559928242117 12.051565550267696 0 q 6.025782775133848 -5.272559928242117 12.051565550267696 0" stroke="#6b4318" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M300.2442039269954 135.62072170665488 q 6.848761047981679 -5.992665916983968 13.697522095963357 0 q 6.848761047981679 -5.992665916983968 13.697522095963357 0" stroke="#6b4318" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M0 450 L0 320 Q 80 290 160 303 Q 240 302 320 305 Q 400 280 480 310 Q 560 301 640 319 Q 720 297 800 301 L800 450 Z" fill="#caa14e" opacity="0.9"/>
+<path d="M0 450 L0 370 Q 100 345 200 369 Q 300 327 400 361 Q 500 345 600 366 Q 700 347 800 362 L800 450 Z" fill="#a97f36" opacity="1"/>
+<path d="M0 450 L0 412 Q 100 392 200 400 Q 300 389 400 408 Q 500 395 600 405 Q 700 399 800 412 L800 450 Z" fill="#7d5a24" opacity="1"/>
+<g transform="translate(222.67348926980048 398) scale(1.25)">
+<path d="M0 0 L-4 -34 M-4 -34 L-20 -48 M-4 -34 L14 -50" stroke="#4c3411" stroke-width="5" fill="none" stroke-linecap="round"/>
+<ellipse cx="-2" cy="-56" rx="42" ry="12" fill="#4c3411"/></g>
+<g transform="translate(576.1052521085367 412) scale(0.85)">
+<path d="M0 0 L-4 -34 M-4 -34 L-20 -48 M-4 -34 L14 -50" stroke="#4c3411" stroke-width="5" fill="none" stroke-linecap="round"/>
+<ellipse cx="-2" cy="-56" rx="42" ry="12" fill="#4c3411"/></g>
+</svg>

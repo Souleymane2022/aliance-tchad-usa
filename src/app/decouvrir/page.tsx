@@ -23,8 +23,14 @@ export default function DecouvrirPage() {
           href="/decouvrir/tchad"
           className="group overflow-hidden border border-stone-200 bg-white transition hover:-translate-y-1 hover:shadow-xl"
         >
-          <div className="flex h-40 items-center justify-center bg-gradient-to-br from-[#002664] via-[#fecb00] to-[#c60c30] text-7xl">
-            🇹🇩
+          <div className="relative h-44 overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/hero-tchad.svg"
+              alt="Paysage stylisé du Tchad : dunes, palmiers et pirogue"
+              className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            />
+            <span className="absolute bottom-2 right-3 text-4xl drop-shadow" aria-hidden>🇹🇩</span>
           </div>
           <div className="border-t-4 border-accent-500 p-6">
             <h2 className="text-2xl font-black text-brand-800 group-hover:text-brand-600">
@@ -46,8 +52,14 @@ export default function DecouvrirPage() {
           href="/decouvrir/usa"
           className="group overflow-hidden border border-stone-200 bg-white transition hover:-translate-y-1 hover:shadow-xl"
         >
-          <div className="flex h-40 items-center justify-center bg-gradient-to-br from-[#3c3b6e] via-white to-[#b22234] text-7xl">
-            🇺🇸
+          <div className="relative h-44 overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/hero-usa.svg"
+              alt="Paysage stylisé des États-Unis : montagnes et gratte-ciel"
+              className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            />
+            <span className="absolute bottom-2 right-3 text-4xl drop-shadow" aria-hidden>🇺🇸</span>
           </div>
           <div className="border-t-4 border-accent-500 p-6">
             <h2 className="text-2xl font-black text-brand-800 group-hover:text-brand-600">

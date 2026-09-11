@@ -44,6 +44,7 @@ export default async function ProvincePage({
           { href: "/decouvrir/tchad", label: "Le Tchad" },
           { href: `/decouvrir/tchad/provinces/${province.slug}`, label: province.nom },
         ]}
+        image={`/images/tchad/${province.slug}.svg`}
       />
 
       <div className="mx-auto max-w-4xl px-4 py-12">

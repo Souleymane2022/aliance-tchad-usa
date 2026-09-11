@@ -44,6 +44,7 @@ export default async function EtatPage({
           { href: "/decouvrir/usa", label: "Les États-Unis" },
           { href: `/decouvrir/usa/etats/${etat.slug}`, label: etat.nom },
         ]}
+        image={`/images/usa/${etat.slug}.svg`}
       />
 
       <div className="mx-auto max-w-4xl px-4 py-12">
