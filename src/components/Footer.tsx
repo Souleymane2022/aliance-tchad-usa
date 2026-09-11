@@ -43,6 +43,8 @@ export function Footer() {
             </p>
             <ul className="space-y-2 text-sm">
               <li><Link href="/a-propos" className="hover:text-white hover:underline">À propos</Link></li>
+              <li><Link href="/decouvrir/tchad" className="hover:text-white hover:underline">Découvrir le Tchad</Link></li>
+              <li><Link href="/decouvrir/usa" className="hover:text-white hover:underline">Découvrir les USA</Link></li>
               <li><Link href="/evenements" className="hover:text-white hover:underline">Événements</Link></li>
               <li><Link href="/contact" className="hover:text-white hover:underline">Contact</Link></li>
             </ul>

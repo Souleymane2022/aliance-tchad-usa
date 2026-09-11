@@ -100,6 +100,52 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Découvrir les deux pays */}
+      <section className="bg-white py-14">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="section-title text-3xl font-black text-brand-800">
+            Découvrir nos deux pays
+          </h2>
+          <p className="mt-3 max-w-3xl text-stone-600">
+            Histoire, chefs d'État, héros, économie et mode de vie : une vue
+            globale du Tchad ({`${23}`} provinces) et des États-Unis ({`${50}`}{" "}
+            États), pour mieux se connaître et mieux échanger.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <Link
+              href="/decouvrir/tchad"
+              className="group flex items-center gap-5 border border-stone-200 p-6 transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <span className="text-5xl" aria-hidden>🇹🇩</span>
+              <span>
+                <span className="block text-xl font-black text-brand-800 group-hover:text-brand-600">
+                  Le Tchad
+                </span>
+                <span className="mt-1 block text-sm text-stone-600">
+                  De Toumaï aux 23 provinces : histoire, chefs d'État depuis
+                  1960, figures et économies régionales.
+                </span>
+              </span>
+            </Link>
+            <Link
+              href="/decouvrir/usa"
+              className="group flex items-center gap-5 border border-stone-200 p-6 transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <span className="text-5xl" aria-hidden>🇺🇸</span>
+              <span>
+                <span className="block text-xl font-black text-brand-800 group-hover:text-brand-600">
+                  Les États-Unis
+                </span>
+                <span className="mt-1 block text-sm text-stone-600">
+                  De 1776 à aujourd'hui : les 47 présidences, les héros, et
+                  les 50 États avec leur économie et leur mode de vie.
+                </span>
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Nouveautés de la marketplace */}
       {latestProducts.length > 0 && (
         <section className="bg-white py-14">

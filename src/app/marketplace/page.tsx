@@ -3,6 +3,7 @@ import Link from "next/link";
 import { db } from "@/lib/db";
 import { CATEGORIES } from "@/lib/validation";
 import { ProductCard } from "@/components/ProductCard";
+import { LoadDemoButton } from "@/components/LoadDemoButton";
 
 export const metadata: Metadata = {
   title: "Marketplace",
@@ -125,7 +126,7 @@ export default async function MarketplacePage({
       </div>
 
       {products.length === 0 ? (
-        <div className="mt-16 rounded-xl border border-dashed border-stone-300 bg-white p-12 text-center">
+        <div className="mt-16 flex flex-col items-center rounded-xl border border-dashed border-stone-300 bg-white p-12 text-center">
           <p className="text-4xl">🛒</p>
           <p className="mt-3 font-semibold text-stone-800">
             Aucun produit ne correspond à votre recherche.
@@ -133,6 +134,7 @@ export default async function MarketplacePage({
           <p className="mt-1 text-stone-600">
             Essayez d'autres mots-clés, ou soyez le premier à vendre ici !
           </p>
+          {total === 0 && !q && !categorie && <LoadDemoButton />}
         </div>
       ) : (
         <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
