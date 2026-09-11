@@ -42,7 +42,7 @@ export default async function StorePage({
       <div className="bg-gradient-to-br from-brand-800 to-brand-900 py-14 text-white">
         <div className="mx-auto max-w-6xl px-4">
           <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-500 text-2xl font-black text-brand-900">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-double border-accent-500 bg-brand-900 text-2xl font-black text-white">
               {store.name.charAt(0).toUpperCase()}
             </div>
             <div>

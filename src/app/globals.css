@@ -1,19 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  /* Couleurs inspirées du drapeau tchadien (bleu, jaune, rouge) + tons neutres chauds */
-  --color-brand-50: #eef4ff;
-  --color-brand-100: #dce7fd;
-  --color-brand-500: #2b5cab;
-  --color-brand-600: #1e4586;
-  --color-brand-700: #173868;
-  --color-brand-800: #122b4f;
-  --color-brand-900: #0d203c;
-  --color-accent-400: #ffd24d;
-  --color-accent-500: #fcc419;
-  --color-accent-600: #e8b000;
-  --color-danger-500: #d64545;
-  --color-danger-600: #b93838;
+  /*
+   * Palette institutionnelle inspirée des sites officiels américains
+   * (bleu marine du Département d'État, rouge drapeau, gris neutres).
+   */
+  --color-brand-50: #eef3f8;
+  --color-brand-100: #d9e4f0;
+  --color-brand-500: #205493;
+  --color-brand-600: #0a4480;
+  --color-brand-700: #163e66;
+  --color-brand-800: #112e4a;
+  --color-brand-900: #071f35;
+  --color-accent-400: #d83933;
+  --color-accent-500: #c61826;
+  --color-accent-600: #a6192e;
+  --color-danger-500: #c61826;
+  --color-danger-600: #a6192e;
+
+  --font-serif-brand: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-sans-brand: "Source Sans 3", "Source Sans Pro", -apple-system,
+    "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 html {
@@ -21,5 +28,27 @@ html {
 }
 
 body {
-  @apply bg-stone-50 text-stone-900 antialiased;
+  @apply bg-white text-stone-900 antialiased;
+  font-family: var(--font-sans-brand);
+}
+
+/* Titres en serif, comme le gabarit officiel des ambassades. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif-brand);
+}
+
+.font-serif-brand {
+  font-family: var(--font-serif-brand);
+}
+
+/* Trait rouge sous les titres de section (signature du style officiel). */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 0.6rem;
+  background: var(--color-accent-500);
 }

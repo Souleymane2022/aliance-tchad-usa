@@ -29,74 +29,104 @@ export async function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-        <Link href="/" className="flex items-center gap-2 font-bold text-brand-700">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-brand-800 text-sm font-black text-accent-400">
-            AT
-          </span>
-          <span className="hidden sm:inline">Alliance Tchad-USA</span>
-        </Link>
+    <header className="sticky top-0 z-40 bg-white shadow-sm">
+      {/* Barre utilitaire supérieure */}
+      <div className="bg-brand-900 text-xs text-stone-200">
+        <div className="mx-auto flex h-8 max-w-6xl items-center justify-between px-4">
+          <p className="truncate">
+            🇹🇩 Organisation communautaire de la diaspora tchadienne aux
+            États-Unis 🇺🇸
+          </p>
+          <div className="flex shrink-0 items-center gap-3">
+            {user ? (
+              <>
+                <span className="hidden text-stone-300 sm:inline">
+                  {user.name}
+                </span>
+                <Link
+                  href="/tableau-de-bord"
+                  className="font-semibold text-white hover:underline"
+                >
+                  Mon espace
+                </Link>
+                <form action={logoutAction} className="leading-none">
+                  <button type="submit" className="hover:underline">
+                    Déconnexion
+                  </button>
+                </form>
+              </>
+            ) : (
+              <>
+                <Link href="/connexion" className="hover:underline">
+                  Connexion
+                </Link>
+                <span aria-hidden>|</span>
+                <Link
+                  href="/inscription"
+                  className="font-semibold text-white hover:underline"
+                >
+                  Devenir membre
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-stone-700 transition hover:bg-brand-50 hover:text-brand-700"
+      {/* En-tête principal : sceau + titre + recherche + panier */}
+      <div className="border-b border-stone-200 bg-white">
+        <div className="mx-auto flex h-20 max-w-6xl items-center gap-4 px-4">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
+            <span
+              aria-hidden
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-4 border-double border-accent-500 bg-brand-800 font-serif-brand text-sm font-black text-white"
             >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+              AT
+            </span>
+            <span className="min-w-0">
+              <span className="block truncate font-serif-brand text-lg font-black uppercase leading-tight tracking-wide text-brand-800 sm:text-xl">
+                Alliance Tchad-USA
+              </span>
+              <span className="hidden text-xs text-stone-500 sm:block">
+                La communauté tchadienne aux États-Unis
+              </span>
+            </span>
+          </Link>
 
-        <div className="flex items-center gap-2">
+          <form
+            method="GET"
+            action="/marketplace"
+            className="ml-auto hidden items-center md:flex"
+            role="search"
+          >
+            <input
+              type="search"
+              name="q"
+              placeholder="Rechercher un produit…"
+              maxLength={100}
+              className="h-10 w-56 rounded-l border border-stone-300 px-3 text-sm focus:border-brand-600 focus:outline-none"
+            />
+            <button
+              type="submit"
+              aria-label="Rechercher"
+              className="h-10 rounded-r bg-brand-600 px-4 text-white hover:bg-brand-700"
+            >
+              🔍
+            </button>
+          </form>
+
           <Link
             href="/panier"
-            className="relative rounded-lg p-2 text-stone-700 transition hover:bg-brand-50"
+            className="relative ml-auto rounded p-2 text-2xl leading-none text-brand-800 hover:bg-brand-50 md:ml-2"
             aria-label={`Panier (${cartCount} article${cartCount > 1 ? "s" : ""})`}
           >
             🛒
             {cartCount > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-danger-500 px-1 text-xs font-bold text-white">
+              <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-500 px-1 text-xs font-bold text-white">
                 {cartCount > 99 ? "99+" : cartCount}
               </span>
             )}
           </Link>
-
-          {user ? (
-            <div className="hidden items-center gap-2 lg:flex">
-              <Link
-                href="/tableau-de-bord"
-                className="rounded-lg px-3 py-2 text-sm font-medium text-stone-700 transition hover:bg-brand-50 hover:text-brand-700"
-              >
-                Mon espace
-              </Link>
-              <form action={logoutAction}>
-                <button
-                  type="submit"
-                  className="rounded-lg border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 transition hover:bg-stone-100"
-                >
-                  Déconnexion
-                </button>
-              </form>
-            </div>
-          ) : (
-            <div className="hidden items-center gap-2 lg:flex">
-              <Link
-                href="/connexion"
-                className="rounded-lg px-3 py-2 text-sm font-medium text-stone-700 transition hover:bg-brand-50"
-              >
-                Connexion
-              </Link>
-              <Link
-                href="/inscription"
-                className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700"
-              >
-                Créer un compte
-              </Link>
-            </div>
-          )}
 
           <MobileNav
             links={NAV_LINKS}
@@ -105,6 +135,24 @@ export async function Header() {
           />
         </div>
       </div>
+
+      {/* Bandeau de navigation principal */}
+      <nav
+        className="hidden bg-brand-700 lg:block"
+        aria-label="Navigation principale"
+      >
+        <div className="mx-auto flex max-w-6xl px-4">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="border-b-4 border-transparent px-4 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:border-accent-500 hover:bg-brand-800"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
     </header>
   );
 }

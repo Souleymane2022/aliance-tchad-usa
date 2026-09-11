@@ -74,7 +74,7 @@ export default async function MarketplacePage({
         </div>
         <Link
           href="/tableau-de-bord"
-          className="rounded-lg bg-accent-500 px-4 py-2.5 font-semibold text-brand-900 transition hover:bg-accent-600"
+          className="bg-accent-500 px-4 py-2.5 font-bold uppercase tracking-wide text-white transition hover:bg-accent-600"
         >
           + Vendre mes produits
         </Link>
