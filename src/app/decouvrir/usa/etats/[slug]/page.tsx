@@ -4,6 +4,11 @@ import { notFound } from "next/navigation";
 import { PageBanner } from "@/components/PageBanner";
 import { StateFlag } from "@/components/StateFlag";
 import { etatsUsa } from "@/data/usa";
+import { etatsWiki } from "@/data/wiki-images";
+import { getWikiImage } from "@/lib/wiki";
+
+// Les photos Wikipédia sont rafraîchies au plus une fois par semaine.
+export const revalidate = 604800;
 
 export function generateStaticParams() {
   return etatsUsa.map((e) => ({ slug: e.slug }));
@@ -34,6 +39,7 @@ export default async function EtatPage({
   const etat = etatsUsa[index];
   const precedent = etatsUsa[index - 1];
   const suivant = etatsUsa[index + 1];
+  const photo = await getWikiImage(etatsWiki[etat.slug], "en", 1200);
 
   return (
     <div>
@@ -45,7 +51,7 @@ export default async function EtatPage({
           { href: "/decouvrir/usa", label: "Les États-Unis" },
           { href: `/decouvrir/usa/etats/${etat.slug}`, label: etat.nom },
         ]}
-        image={`/images/usa/${etat.slug}.svg`}
+        image={photo ?? `/images/usa/${etat.slug}.svg`}
       />
 
       <div className="mx-auto max-w-4xl px-4 py-12">

@@ -3,22 +3,24 @@
 import { useState } from "react";
 
 /**
- * Portrait avec remplacement automatique : tente d'abord la photo
- * (ex. /images/presidents/16.jpg, à déposer dans public/images/), et
- * bascule sur le médaillon gravé généré si elle n'existe pas.
+ * Image avec remplacement automatique : tente d'abord la photo réelle
+ * (Wikipédia ou fichier déposé dans public/images/), et bascule sur
+ * l'illustration de secours si elle ne charge pas — jamais d'image cassée.
  */
 export function Portrait({
   photoSrc,
   fallbackSrc,
   alt,
   className = "",
+  rounded = true,
 }: {
-  photoSrc: string;
+  photoSrc: string | null | undefined;
   fallbackSrc: string;
   alt: string;
   className?: string;
+  rounded?: boolean;
 }) {
-  const [src, setSrc] = useState(photoSrc);
+  const [src, setSrc] = useState(photoSrc || fallbackSrc);
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -26,10 +28,11 @@ export function Portrait({
       src={src}
       alt={alt}
       loading="lazy"
+      referrerPolicy="no-referrer"
       onError={() => {
         if (src !== fallbackSrc) setSrc(fallbackSrc);
       }}
-      className={`rounded-full object-cover ${className}`}
+      className={`${rounded ? "rounded-full" : ""} object-cover ${className}`}
     />
   );
 }

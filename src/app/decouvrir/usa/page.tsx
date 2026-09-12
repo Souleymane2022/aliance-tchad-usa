@@ -4,6 +4,22 @@ import { PageBanner } from "@/components/PageBanner";
 import { Portrait } from "@/components/Portrait";
 import { StateFlag } from "@/components/StateFlag";
 import { histoireUsa, presidentsUsa, figuresUsa, etatsUsa } from "@/data/usa";
+import {
+  presidentsWiki,
+  figuresWiki,
+  etatsWiki,
+  paysWiki,
+} from "@/data/wiki-images";
+import { getWikiImage, getWikiImages } from "@/lib/wiki";
+
+export const metadata: Metadata = {
+  title: "Les États-Unis — histoire, présidents et États",
+  description:
+    "Une vue globale des États-Unis : leur histoire, les 47 présidences de Washington à aujourd'hui, leurs héros et les 50 États avec économie et mode de vie.",
+};
+
+// Les photos Wikipédia sont rafraîchies au plus une fois par semaine.
+export const revalidate = 604800;
 
 const PARTY_STYLES: Record<string, string> = {
   "Républicain": "bg-red-100 text-red-900",
@@ -14,13 +30,23 @@ const PARTY_STYLES: Record<string, string> = {
   "Indépendant": "bg-stone-200 text-stone-800",
 };
 
-export const metadata: Metadata = {
-  title: "Les États-Unis — histoire, présidents et États",
-  description:
-    "Une vue globale des États-Unis : leur histoire, les 47 présidences de Washington à aujourd'hui, leurs héros et les 50 États avec économie et mode de vie.",
-};
+export default async function UsaPage() {
+  const [banner, presidentPhotos, figurePhotos, etatPhotos] = await Promise.all([
+    getWikiImage(paysWiki.usa.title, paysWiki.usa.lang, 1200),
+    getWikiImages(
+      presidentsUsa.map((p) => ({ title: presidentsWiki[p.n], lang: "en" as const })),
+      320
+    ),
+    getWikiImages(
+      figuresUsa.map((f) => figuresWiki[f.nom] ?? { title: f.nom, lang: "en" as const }),
+      320
+    ),
+    getWikiImages(
+      etatsUsa.map((e) => ({ title: etatsWiki[e.slug], lang: "en" as const })),
+      480
+    ),
+  ]);
 
-export default function UsaPage() {
   return (
     <div>
       <PageBanner
@@ -30,7 +56,7 @@ export default function UsaPage() {
           { href: "/decouvrir", label: "Découvrir" },
           { href: "/decouvrir/usa", label: "Les États-Unis" },
         ]}
-        image="/images/hero-usa.svg"
+        image={banner ?? "/images/hero-usa.svg"}
         flag={{ src: "/images/drapeau-us.svg", alt: "Drapeau des États-Unis" }}
       />
 
@@ -76,7 +102,7 @@ export default function UsaPage() {
 
       {/* Présidents */}
       <section className="bg-stone-100 py-12">
-        <div className="mx-auto max-w-4xl px-4">
+        <div className="mx-auto max-w-6xl px-4">
           <h2 className="section-title text-3xl font-black text-brand-800">
             Les présidences, de Washington à aujourd'hui
           </h2>
@@ -84,17 +110,17 @@ export default function UsaPage() {
             {presidentsUsa.length} présidences depuis 1789 (Grover Cleveland a
             exercé deux mandats non consécutifs, tout comme Donald Trump).
           </p>
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {presidentsUsa.map((p) => (
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {presidentsUsa.map((p, i) => (
               <article
                 key={`${p.n}-${p.periode}`}
                 className="flex flex-col items-center border border-stone-200 bg-white p-4 text-center"
               >
                 <Portrait
-                  photoSrc={`/images/presidents/${p.n}.jpg`}
+                  photoSrc={presidentPhotos[i]}
                   fallbackSrc={`/images/presidents/medaillon-${p.n}.svg`}
                   alt={`Portrait : ${p.nom} (${p.n}e présidence)`}
-                  className="h-24 w-24"
+                  className="h-28 w-28 border-4 border-white shadow-md"
                 />
                 <p className="mt-3 text-xs font-bold uppercase tracking-widest text-stone-400">
                   {p.n}e présidence
@@ -111,6 +137,9 @@ export default function UsaPage() {
               </article>
             ))}
           </div>
+          <p className="mt-4 text-xs text-stone-500">
+            Portraits : Wikimedia Commons (domaine public / licences libres).
+          </p>
         </div>
       </section>
 
@@ -120,18 +149,26 @@ export default function UsaPage() {
           Héros et figures marquantes
         </h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {figuresUsa.map((figure) => (
+          {figuresUsa.map((figure, i) => (
             <article
               key={figure.nom}
-              className="border border-stone-200 bg-white p-5"
+              className="flex gap-4 border border-stone-200 bg-white p-5"
             >
-              <p className="text-xs font-bold uppercase tracking-widest text-accent-500">
-                {figure.domaine}
-              </p>
-              <h3 className="mt-1 font-bold text-brand-800">{figure.nom}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-stone-700">
-                {figure.note}
-              </p>
+              <Portrait
+                photoSrc={figurePhotos[i]}
+                fallbackSrc="/images/presidents/medaillon-1.svg"
+                alt={`Portrait : ${figure.nom}`}
+                className="h-20 w-20 shrink-0 border-2 border-white shadow"
+              />
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-accent-500">
+                  {figure.domaine}
+                </p>
+                <h3 className="mt-1 font-bold text-brand-800">{figure.nom}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                  {figure.note}
+                </p>
+              </div>
             </article>
           ))}
         </div>
@@ -148,19 +185,19 @@ export default function UsaPage() {
             son mode de vie.
           </p>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {etatsUsa.map((etat) => (
+            {etatsUsa.map((etat, i) => (
               <Link
                 key={etat.slug}
                 href={`/decouvrir/usa/etats/${etat.slug}`}
                 className="group overflow-hidden border border-brand-700 bg-brand-700/50 transition hover:border-accent-500 hover:bg-brand-700"
               >
                 <div className="relative aspect-video overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`/images/usa/${etat.slug}.svg`}
-                    alt={`Paysage stylisé de l'État : ${etat.nom}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                  <Portrait
+                    photoSrc={etatPhotos[i]}
+                    fallbackSrc={`/images/usa/${etat.slug}.svg`}
+                    alt={`${etatsWiki[etat.slug]} — ${etat.nom}`}
+                    rounded={false}
+                    className="h-full w-full transition duration-300 group-hover:scale-105"
                   />
                   <StateFlag
                     code={etat.code}
@@ -177,6 +214,9 @@ export default function UsaPage() {
               </Link>
             ))}
           </div>
+          <p className="mt-4 text-xs text-stone-400">
+            Photos : Wikimedia Commons.
+          </p>
         </div>
       </section>
     </div>

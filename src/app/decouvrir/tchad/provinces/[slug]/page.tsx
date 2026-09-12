@@ -3,6 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageBanner } from "@/components/PageBanner";
 import { provincesTchad } from "@/data/tchad";
+import { provincesWiki } from "@/data/wiki-images";
+import { getWikiImage } from "@/lib/wiki";
+
+// Les photos Wikipédia sont rafraîchies au plus une fois par semaine.
+export const revalidate = 604800;
 
 export function generateStaticParams() {
   return provincesTchad.map((p) => ({ slug: p.slug }));
@@ -33,6 +38,7 @@ export default async function ProvincePage({
   const province = provincesTchad[index];
   const precedente = provincesTchad[index - 1];
   const suivante = provincesTchad[index + 1];
+  const photo = await getWikiImage(provincesWiki[province.slug], "fr", 1200);
 
   return (
     <div>
@@ -44,7 +50,7 @@ export default async function ProvincePage({
           { href: "/decouvrir/tchad", label: "Le Tchad" },
           { href: `/decouvrir/tchad/provinces/${province.slug}`, label: province.nom },
         ]}
-        image={`/images/tchad/${province.slug}.svg`}
+        image={photo ?? `/images/tchad/${province.slug}.svg`}
       />
 
       <div className="mx-auto max-w-4xl px-4 py-12">
